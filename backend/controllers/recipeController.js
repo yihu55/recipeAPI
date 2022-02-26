@@ -1,12 +1,12 @@
 const asyncHandler = require("express-async-handler");
 
-const Recipe = require("../model/recipe");
+const Recipe = require("../models/recipe");
 
 //@ description Get recipes
 //@ routes GET /api/recipes
 //@access Private
 const getRecipes = asyncHandler(async (req, res) => {
-  const recipes = await Recipe.find();
+  const recipes = await Recipe.find({ user: req.user.id });
   res.status(200).json(recipes);
 });
 
@@ -22,6 +22,7 @@ const setRecipe = asyncHandler(async (req, res) => {
     title: req.body.title,
     ingredients: req.body.ingredients,
     cookingTime: req.body.cookingTime,
+    user: req.user._id,
   });
   recipe.save();
   res.status(200).json(recipe);

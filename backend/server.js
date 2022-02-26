@@ -11,7 +11,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(errorHandler);
 
 app.use("/api/recipes", require("./routes/recipeRoutes"));
-
+app.use("/api/users", require("./routes/userRoutes"));
 app.listen(port, () => {
   console.log(`Server running on port ${port}`);
 });

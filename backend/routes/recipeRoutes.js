@@ -5,13 +5,14 @@ const {
   setRecipe,
   putRecipe,
   deleteRecipe,
-} = require("../controller/recipeController");
-router.get("/", getRecipes);
+} = require("../controllers/recipeController");
+const { protect } = require("../middleware/authMiddleware");
+router.get("/", protect, getRecipes);
 
-router.post("/", setRecipe);
+router.post("/", protect, setRecipe);
 
-router.put("/:id", putRecipe);
+router.put("/:id", protect, putRecipe);
 
-router.delete("/:id", deleteRecipe);
+router.delete("/:id", protect, deleteRecipe);
 
 module.exports = router;

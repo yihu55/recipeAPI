@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 
 const connectDB = async () => {
   try {
-    const connect = await mongoose.connect("mongodb://localhost/backend1");
+    const connect = await mongoose.connect("mongodb://localhost/recipe");
 
     console.log(`MongoDB Connected at ${connect}`);
   } catch (error) {
